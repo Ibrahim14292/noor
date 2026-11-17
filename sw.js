@@ -1,6 +1,6 @@
 // NOOR service worker — offline app shell + verified Quran text.
 // Recitation audio is NOT cached here; downloads are stored by the app in IndexedDB.
-const V = 'noor-v1.0.1';
+const V = 'noor-v1.0.2';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'app.css', 'app.js', 'db.js', 'quran.js', 'audio.js', 'srs.js', 'state.js', 'ui.js', 'tajweed.js', 'views-practice.js', 'views-more.js', 'quran.json', 'amiri-quran.woff2', 'amiri-700.woff2', 'plex-ar-400.woff2', 'plex-ar-500.woff2', 'plex-ar-700.woff2', 'plex-la-400.woff2', 'plex-la-500.woff2', 'plex-la-700.woff2', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
