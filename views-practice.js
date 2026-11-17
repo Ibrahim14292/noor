@@ -6,6 +6,7 @@ import { S, PLAN, saveSettings, route, go, routes } from './state.js';
 import { esc, $, $$, ic, toast, sheet, ask, setTop, SRC_Q, SRC_MINE, surahOptions, ayahOptions, clock, fmtDur, chips, bindChips } from './ui.js';
 import { range } from './app.js';
 
+const IS_IOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const reciterSelect = (cur, id = 'rec') => `<select class="input" id="${id}">${RECITERS.map(r => `<option value="${r.id}" ${r.id === cur ? 'selected' : ''}>${r.ar}</option>`).join('')}</select>`;
 function rangePicker(root, s, a1, a2, onChange) {
   root.innerHTML = `<label class="f">السورة</label><select class="input" data-r="s">${surahOptions(s)}</select>
@@ -265,7 +266,7 @@ route('record', async (v, [ps, pa1, pa2]) => {
   let mr, stream, chunks = [], t0, tick, actx, raf;
   $('#rb', v).onclick = async () => {
     if (mr && mr.state === 'recording') { mr.stop(); return; }
-    try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: true } }); }
+    try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
     catch (e) { toast('لم يُسمح بالوصول إلى الميكروفون — فعّله من إعدادات Safari'); return; }
     player.pause();
     const mime = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm', 'audio/aac'].find(m => MediaRecorder.isTypeSupported?.(m)) || '';
@@ -278,9 +279,9 @@ route('record', async (v, [ps, pa1, pa2]) => {
       if (dur < 1) return toast('التسجيل قصير جدًا');
       const x = getR(); afterRecord(v, { s: x.s, a1: x.a1, a2: x.a2, blob, dur });
     };
-    mr.start(250); t0 = Date.now(); $('#rb', v).classList.add('on'); $('#rs', v).textContent = 'جارٍ التسجيل… اضغط للإيقاف';
+    mr.start(); t0 = Date.now(); /* no timeslice: iOS Safari corrupts timestamps when chunks are concatenated */ $('#rb', v).classList.add('on'); $('#rs', v).textContent = 'جارٍ التسجيل… اضغط للإيقاف';
     tick = setInterval(() => $('#rt', v).textContent = clock((Date.now() - t0) / 1000), 500);
-    try {
+    if (!IS_IOS) try { // level meter skipped on iOS: a second AudioContext can alter the mic sample rate (fast/silent recordings)
       actx = new (window.AudioContext || window.webkitAudioContext)(); const an = actx.createAnalyser(); an.fftSize = 64; actx.createMediaStreamSource(stream).connect(an);
       const data = new Uint8Array(an.frequencyBinCount); const bars = $$('#wv i', v);
       const draw = () => { an.getByteFrequencyData(data); bars.forEach((b, k) => b.style.height = (4 + (data[k % data.length] / 255) * 40) + 'px'); raf = requestAnimationFrame(draw); }; draw();
