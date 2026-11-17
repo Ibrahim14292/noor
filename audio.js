@@ -172,7 +172,7 @@ class Player extends EventTarget {
     try {
       navigator.mediaSession.metadata = new MediaMetadata({
         title: this.inBasmala ? 'البسملة' : `سورة ${ref(this.current)}`, artist: reciter(this.rid).ar, album: 'نور – NOOR',
-        artwork: [{ src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' }],
+        artwork: [{ src: 'icon-512.png', sizes: '512x512', type: 'image/png' }],
       });
     } catch (e) {}
   }

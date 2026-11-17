@@ -6,7 +6,7 @@ let surahOfId; // Uint8Array id->surah
 
 export async function loadQuran() {
   if (Q) return Q;
-  const r = await fetch('data/quran.json');
+  const r = await fetch('quran.json');
   Q = await r.json();
   if (Q.ayahs.length !== 6236 || Q.surahs.length !== 114) throw new Error('Quran data incomplete');
   surahOfId = new Uint8Array(6237);

@@ -1,12 +1,12 @@
 /* NOOR – نور  ·  design system */
-@font-face{font-family:"Amiri Quran";src:url(../fonts/amiri-quran.woff2) format("woff2");font-display:swap}
-@font-face{font-family:"Amiri";font-weight:700;src:url(../fonts/amiri-700.woff2) format("woff2");font-display:swap}
-@font-face{font-family:"Plex";font-weight:400;src:url(../fonts/plex-ar-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
-@font-face{font-family:"Plex";font-weight:500;src:url(../fonts/plex-ar-500.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
-@font-face{font-family:"Plex";font-weight:700;src:url(../fonts/plex-ar-700.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
-@font-face{font-family:"Plex";font-weight:400;src:url(../fonts/plex-la-400.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
-@font-face{font-family:"Plex";font-weight:500;src:url(../fonts/plex-la-500.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
-@font-face{font-family:"Plex";font-weight:700;src:url(../fonts/plex-la-700.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
+@font-face{font-family:"Amiri Quran";src:url(amiri-quran.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Amiri";font-weight:700;src:url(amiri-700.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Plex";font-weight:400;src:url(plex-ar-400.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
+@font-face{font-family:"Plex";font-weight:500;src:url(plex-ar-500.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
+@font-face{font-family:"Plex";font-weight:700;src:url(plex-ar-700.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+08A0-08FF,U+FB50-FDFF,U+FE70-FEFF;font-display:swap}
+@font-face{font-family:"Plex";font-weight:400;src:url(plex-la-400.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
+@font-face{font-family:"Plex";font-weight:500;src:url(plex-la-500.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
+@font-face{font-family:"Plex";font-weight:700;src:url(plex-la-700.woff2) format("woff2");unicode-range:U+0000-024F;font-display:swap}
 
 :root{
   --bg:#FAF7F0; --paper:#FFFDF8; --card:#FFFFFF; --ink:#1D2B2E; --ink2:#5B6B6E; --ink3:#8E9A9B;
